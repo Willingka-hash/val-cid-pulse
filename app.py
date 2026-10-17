@@ -19,7 +19,7 @@ Val CID Pulse provides real-time monitoring of Programs, Projects, and Activitie
 # ===================================
 # REPLACE THIS WITH YOUR ONEDRIVE LINK
 # ===================================
-EXCEL_URL = "YOUR_ONEDRIVE_LINK"
+EXCEL_URL = "https://depedph-my.sharepoint.com/:x:/g/personal/melvinwilly_roque_deped_gov_ph/IQCcUYJbOAteQKkFfISGLUyKASVSYUndL89Jz32_Qu7vsRM?e=9sLQAd"
 
 @st.cache_data(ttl=60)
 def load_data():
