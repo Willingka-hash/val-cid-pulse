@@ -9,16 +9,12 @@ st.set_page_config(
 
 st.title("📊 Val CID Pulse")
 
-FILE_URL = "https://depedph-my.sharepoint.com/personal/melvinwilly_roque_deped_gov_ph/Documents/CID-PPAs%20DASHBOARD.xlsx"
+st.markdown("""
+### SDO Valenzuela CID Real-Time Monitoring Dashboard
+""")
 
-try:
-    df = pd.read_excel(FILE_URL)
+df = pd.read_excel("CID-PPAs DASHBOARD.xlsx")
 
-    st.success("✅ Connected Successfully")
+st.success("✅ Data Connected")
 
-    st.write(df.head())
-
-except Exception as e:
-    st.error("Connection Failed")
-
-    st.code(str(e))
+st.write(df)
