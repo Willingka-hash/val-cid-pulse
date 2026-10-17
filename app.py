@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(
     page_title="Val CID Pulse",
@@ -8,10 +9,16 @@ st.set_page_config(
 
 st.title("📊 Val CID Pulse")
 
-st.markdown("""
-### SDO Valenzuela CID Real-Time Monitoring Dashboard
+FILE_URL = "https://depedph-my.sharepoint.com/personal/melvinwilly_roque_deped_gov_ph/Documents/CID-PPAs%20DASHBOARD.xlsx"
 
-Val CID Pulse provides real-time monitoring of Programs, Projects, and Activities (PPAs) of the Curriculum Implementation Division.
-""")
+try:
+    df = pd.read_excel(FILE_URL)
 
-st.success("✅ Deployment successful!")
+    st.success("✅ Connected Successfully")
+
+    st.write(df.head())
+
+except Exception as e:
+    st.error("Connection Failed")
+
+    st.code(str(e))
