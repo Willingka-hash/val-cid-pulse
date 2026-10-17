@@ -4,17 +4,22 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="Val CID Pulse",
+    page_icon="📊",
     layout="wide"
 )
 
 st.title("📊 Val CID Pulse")
 
 st.markdown("""
-**Val CID Pulse** is a real-time monitoring dashboard for the Curriculum Implementation Division (CID) of SDO Valenzuela, providing up-to-date insights on the implementation status, accomplishments, timelines, and budget utilization of PPAs.
+### SDO Valenzuela CID Real-Time Monitoring Dashboard
+
+Val CID Pulse provides real-time monitoring of Programs, Projects, and Activities (PPAs) of the Curriculum Implementation Division, supporting evidence-based planning, implementation, monitoring, and decision-making.
 """)
 
-# CHANGE THIS LATER TO YOUR ONEDRIVE LINK
-EXCEL_URL = "YOUR_ONEDRIVE_LINK_HERE"
+# ===================================
+# REPLACE THIS WITH YOUR ONEDRIVE LINK
+# ===================================
+EXCEL_URL = "YOUR_ONEDRIVE_LINK"
 
 @st.cache_data(ttl=60)
 def load_data():
@@ -23,17 +28,28 @@ def load_data():
 try:
     df = load_data()
 
-    total_ppa = len(df)
+    st.success("✅ Connected to Online Excel File")
 
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("Total PPAs", total_ppa)
-    col2.metric("Last Refresh", datetime.now().strftime("%H:%M"))
-    col3.metric("Records", len(df))
+    col1.metric(
+        "Total PPAs",
+        len(df)
+    )
+
+    col2.metric(
+        "Records",
+        len(df.index)
+    )
+
+    col3.metric(
+        "Last Refresh",
+        datetime.now().strftime("%H:%M:%S")
+    )
 
     st.divider()
 
-    st.subheader("PPA Data")
+    st.subheader("PPA Monitoring Data")
 
     st.dataframe(
         df,
@@ -42,8 +58,7 @@ try:
 
 except Exception as e:
 
-    st.error(
-        "Unable to load Excel file."
-    )
+    st.error("Unable to load data.")
 
     st.write(e)
+`
